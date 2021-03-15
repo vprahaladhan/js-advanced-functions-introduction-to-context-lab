@@ -61,13 +61,7 @@ const wagesEarnedOnDate = (employeeRecord, dateStamp) => {
 };
 
 const allWagesFor = employeeRecord => {
-  let totalWages = 0;
-
-  for (const timeIn of employeeRecord.timeInEvents) {
-    totalWages += wagesEarnedOnDate(employeeRecord, timeIn.date);
-  };
-
-  return totalWages;
+  return employeeRecord.timeInEvents.reduce((total, timeIn) => total + wagesEarnedOnDate(employeeRecord, timeIn.date), 0);
 }
 
 const findEmployeeByFirstName = (srcArray, firstName) => {
@@ -75,9 +69,5 @@ const findEmployeeByFirstName = (srcArray, firstName) => {
 }
 
 const calculatePayroll = employeeRecords => {
-  let totalWagesForAllEmployees = 0;
-
-  employeeRecords.forEach(empRecord => totalWagesForAllEmployees += allWagesFor(empRecord));
-
-  return totalWagesForAllEmployees;
+  return employeeRecords.reduce((total, empRecord) => total + allWagesFor(empRecord), 0);
 }
