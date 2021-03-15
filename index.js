@@ -53,7 +53,6 @@ const hoursWorkedOnDate = (employeeRecord, dateStamp) => {
     };
   };
 
-  console.log('Hrs worked >> ', (timeOut - timeIn) / 100);
   return (timeOut - timeIn) / 100;
 };
 
@@ -82,4 +81,3 @@ const calculatePayroll = employeeRecords => {
 
   return totalWagesForAllEmployees;
 }
-
